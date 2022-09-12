@@ -35,6 +35,12 @@
 
 \newcommand{\separatorcolumn}{\begin{column}{\sepwidth}\end{column}}
 
+% Fix Beamer bibtex styling
+\setbeamertemplate{bibliography entry article}{}
+\setbeamertemplate{bibliography entry title}{}
+\setbeamertemplate{bibliography entry location}{}
+\setbeamertemplate{bibliography entry note}{}
+
 % ====================
 % Title
 % ====================
@@ -74,67 +80,31 @@ Korea Polar Research Institute (KOPRI), Incheon, Korea \hfill \null
 
 \begin{column}{\colwidth}
 
-  \begin{block}{A block title}
+  \begin{alertblock}{Introduction}
+    The largest source of uncertainty in estimating the radiative response to a warming climate in global climate models comes from the representation of clouds, which modulate the radiative transfer through the atmosphere and drive a number of feedback processes. The uncertainty in our prediction of the Arctic climate is further exacerbated by Arctic amplification processes. Despite their importance, however, our understanding of dynamic and thermodynamic properties of clouds is still far from complete. This is largely due to the difficulties involved in making detailed observations of the properties of the Arctic clouds. To this end, continuous in-situ measurements of liquid droplets were made at the Zeppelin Observatory, Svalbard, using a cloud particle spectrometre called the Cloud Droplet Probe. Post-processed time-series of cloud liquid water concentration (LWC) is presented and examined against existing in-situ observations of cloud particle size distributions; the results show that these measurements provide a detailed look at the properties of low-altitude cloud properties, which can be used to help take a closer look at convective activities in the Arctic atmosphere.
+  \end{alertblock}
 
-    Some block contents, followed by a diagram, followed by a dummy paragraph.
+  \begin{block}{Methods}
+    The cloud particle spectrometer (CDP2) has been measuring some of the key thermodynamic and microphysical properties of low-altitude clouds at the Zeppelin Observatory, near Ny-\r{A}lesund, Svalbard, since 2017. The following figure shows a time-series of the monthly mean values of cloud liquid water concentration (LWC).
 
     \begin{figure}
-      \centering
-      \begin{tikzpicture}[scale=6]
-        \draw[step=0.25cm,color=gray] (-1,-1) grid (1,1);
-        \draw (1,0) -- (0.2,0.2) -- (0,1) -- (-0.2,0.2) -- (-1,0)
-          -- (-0.2,-0.2) -- (0,-1) -- (0.2,-0.2) -- cycle;
-      \end{tikzpicture}
-      \caption{A figure caption.}
+        \centering
+        \includegraphics[width=\colwidth]{img/monthly.png}
+        \caption{ Monthly average values of liquid water content (LWC) [g/m$^3$], observed by the cloud particle spectrometer (CDP2). Each measurement point represents an average of all daily LWC values for the corresponding month. Daily values of LWC below 1e-3 g/m$^3$ are excluded from calculations to reduce observational noise. }
+        \label{fig:01}
     \end{figure}
 
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ultricies
-    eget libero ac ullamcorper. Integer et euismod ante. Aenean vestibulum
-    lobortis augue, ut lobortis turpis rhoncus sed. Proin feugiat nibh a
-    lacinia dignissim. Proin scelerisque, risus eget tempor fermentum, ex
-    turpis condimentum urna, quis malesuada sapien arcu eu purus.
+    CDP2 measures a number of thermodynamic and microphysical properties of low-altitude clouds, such as cloud liquid water concentration (LWC), number concentration (NC) and particle size distribution every 10 seconds. Here, we focus on the time-series evolution of LWC observed on November 8th, 2019, for a qualitative comparison between the measurements from CDP2 and those from an existing in-situ observation (FM120 \cite{karl2020ro,koik2019ye}) at the Zeppelin Observatory.
 
+    The high-resolution time-series of LWC obtained from CDP2 needs to be further processed for a statistical analysis. For this purpose, we employed Gaussian Process Regression (GP) method \cite{rasm2006ga} to identify the underlying behaviour from the noisy time-series. Figure \ref{fig:02} below shows the result of applying the GP model, based on a Square-Exponential (SE) kernel, to retrieve a smooth time-series from the 10-second observation with noise. The SE kernel is governed by a time-scale parameter $\lambda$, which is used to represent our prior belief that the true properties of the cloud particles vary relatively slowly in time.
+
+    \begin{figure}
+        \centering
+        \includegraphics[width=\colwidth]{img/lwc_raw.png}
+        \caption{ The time-series of cloud liquid water content (LWC) [g/m$^3$] measured by CDP2 on November 8th, 2019, at the Zeppelin Observatory near Ny-\r{A}lesund, Svalbard. Blue dots show raw observation points from CDP2, and the orange curve represents the smooth distribution modelled by the GP method. }
+        \label{fig:02}
+    \end{figure}
   \end{block}
-
-  \begin{block}{A block containing a list}
-
-    Nam vulputate nunc felis, non condimentum lacus porta ultrices. Nullam sed
-    sagittis metus. Etiam consectetur gravida urna quis suscipit.
-
-    \begin{itemize}
-      \item \textbf{Mauris tempor} risus nulla, sed ornare
-      \item \textbf{Libero tincidunt} a duis congue vitae
-      \item \textbf{Dui ac pretium} morbi justo neque, ullamcorper
-    \end{itemize}
-
-    Eget augue porta, bibendum venenatis tortor.
-
-  \end{block}
-
-  \begin{alertblock}{A highlighted block}
-
-    This block catches your eye, so \textbf{important stuff} should probably go
-    here.
-
-    Curabitur eu libero vehicula, cursus est fringilla, luctus est. Morbi
-    consectetur mauris quam, at finibus elit auctor ac. Aliquam erat volutpat.
-    Aenean at nisl ut ex ullamcorper eleifend et eu augue. Aenean quis velit
-    tristique odio convallis ultrices a ac odio.
-
-    \begin{itemize}
-      \item \textbf{Fusce dapibus tellus} vel tellus semper finibus. In
-        consequat, nibh sed mattis luctus, augue diam fermentum lectus.
-      \item \textbf{In euismod erat metus} non ex. Vestibulum luctus augue in
-        mi condimentum, at sollicitudin lorem viverra.
-      \item \textbf{Suspendisse vulputate} mauris vel placerat consectetur.
-        Mauris semper, purus ac hendrerit molestie, elit mi dignissim odio, in
-        suscipit felis sapien vel ex.
-    \end{itemize}
-
-    Aenean tincidunt risus eros, at gravida lorem sagittis vel. Vestibulum ante
-    ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.
-
-  \end{alertblock}
 
 \end{column}
 
@@ -142,97 +112,35 @@ Korea Polar Research Institute (KOPRI), Incheon, Korea \hfill \null
 
 \begin{column}{\colwidth}
 
-  \begin{block}{A block containing an enumerated list}
+  \begin{block}{Results}
+    Figures \ref{fig:03} and \ref{fig:04} show the observed time-series of LWC in [g/m$^3$], based on the GP method. The two probes correspond well to each other, especially at the peak of the distribution. However, FM120 tends to generally underestimate the values of LWC compared to those from CDP2, although the difference between the two measurements are small in scale.
 
-    Vivamus congue volutpat elit non semper. Praesent molestie nec erat ac
-    interdum. In quis suscipit erat. \textbf{Phasellus mauris felis, molestie
-    ac pharetra quis}, tempus nec ante. Donec finibus ante vel purus mollis
-    fermentum. Sed felis mi, pharetra eget nibh a, feugiat eleifend dolor. Nam
-    mollis condimentum purus quis sodales. Nullam eu felis eu nulla eleifend
-    bibendum nec eu lorem. Vivamus felis velit, volutpat ut facilisis ac,
-    commodo in metus.
-
-    \begin{enumerate}
-      \item \textbf{Morbi mauris purus}, egestas at vehicula et, convallis
-        accumsan orci. Orci varius natoque penatibus et magnis dis parturient
-        montes, nascetur ridiculus mus.
-      \item \textbf{Cras vehicula blandit urna ut maximus}. Aliquam blandit nec
-        massa ac sollicitudin. Curabitur cursus, metus nec imperdiet bibendum,
-        velit lectus faucibus dolor, quis gravida metus mauris gravida turpis.
-      \item \textbf{Vestibulum et massa diam}. Phasellus fermentum augue non
-        nulla accumsan, non rhoncus lectus condimentum.
-    \end{enumerate}
-
-  \end{block}
-
-  \begin{block}{Fusce aliquam magna velit}
-
-    Et rutrum ex euismod vel. Pellentesque ultricies, velit in fermentum
-    vestibulum, lectus nisi pretium nibh, sit amet aliquam lectus augue vel
-    velit. Suspendisse rhoncus massa porttitor augue feugiat molestie. Sed
-    molestie ut orci nec malesuada. Sed ultricies feugiat est fringilla
-    posuere.
+    The GP model is particularly useful in making a statistical comparison from the two time-series. Since the measurements have been taken at different times, we can produce the GP posterior distribution which can be sampled exactly at same intervals. The orange points in Figures \ref{fig:03} and \ref{fig:04} correspond to samples taken at the same sampling points for the two probes, which allows us to take a direct comparison between the two measurements.
 
     \begin{figure}
-      \centering
-      \begin{tikzpicture}
-        \begin{axis}[
-            scale only axis,
-            no markers,
-            domain=0:2*pi,
-            samples=100,
-            axis lines=center,
-            axis line style={-},
-            ticks=none]
-          \addplot[red] {sin(deg(x))};
-          \addplot[blue] {cos(deg(x))};
-        \end{axis}
-      \end{tikzpicture}
-      \caption{Another figure caption.}
+        \centering
+        \includegraphics[width=\colwidth]{img/lwc_cdp.png}
+        \caption{ The time-series of cloud liquid water content (LWC) [g/m$^3$] measured by CDP2 on November 8th, 2019, at the Zeppelin Observatory near Ny-\r{A}lesund, Svalbard. Blue dots represent smooth GP posterior (\emph{cf.} Figure \ref{fig:02}), and the orange dots have been sampled from the posterior at a 10-minute interval. The shaded region denotes the 95\% confidence region for the GP posterior distribution. }
+        \label{fig:03}
     \end{figure}
 
+    \begin{figure}
+        \centering
+        \includegraphics[width=\colwidth]{img/lwc_fm.png}
+        \caption{ The time-series of cloud liquid water content (LWC) [g/m$^3$] measured by FM120 \cite{karl2020ro,koik2019ye} on November 8th, 2019, at the Zeppelin Observatory near Ny-\r{A}lesund, Svalbard. Blue dots represent smooth GP posterior (\emph{cf.} Figure \ref{fig:02}), and the orange dots have been sampled from the posterior at a 10-minute interval. The shaded region denotes the 95\% confidence region for the GP posterior distribution. }
+        \label{fig:04}
+    \end{figure}
   \end{block}
 
-  \begin{block}{Nam cursus consequat egestas}
+  \begin{block}{Remarks}
+    We have introduced a statistical method to analyze noisy time-series observations of low-altitude cloud properties from the cloud particle spectrometer (CDP2) and fog monitor (FM120 \cite{karl2020ro,koik2019ye}). The preliminary analysis shows that the two probes correspond well to each other, although FM120 tends to generally underestimate the values of LWC compared to those from CDP2.
 
-    Nulla eget sem quam. Ut aliquam volutpat nisi vestibulum convallis. Nunc a
-    lectus et eros facilisis hendrerit eu non urna. Interdum et malesuada fames
-    ac ante \textit{ipsum primis} in faucibus. Etiam sit amet velit eget sem
-    euismod tristique. Praesent enim erat, porta vel mattis sed, pharetra sed
-    ipsum. Morbi commodo condimentum massa, \textit{tempus venenatis} massa
-    hendrerit quis. Maecenas sed porta est. Praesent mollis interdum lectus,
-    sit amet sollicitudin risus tincidunt non.
-
-    Etiam sit amet tempus lorem, aliquet condimentum velit. Donec et nibh
-    consequat, sagittis ex eget, dictum orci. Etiam quis semper ante. Ut eu
-    mauris purus. Proin nec consectetur ligula. Mauris pretium molestie
-    ullamcorper. Integer nisi neque, aliquet et odio non, sagittis porta justo.
-
-    \begin{itemize}
-      \item \textbf{Sed consequat} id ante vel efficitur. Praesent congue massa
-        sed est scelerisque, elementum mollis augue iaculis.
-        \begin{itemize}
-          \item In sed est finibus, vulputate
-            nunc gravida, pulvinar lorem. In maximus nunc dolor, sed auctor eros
-            porttitor quis.
-          \item Fusce ornare dignissim nisi. Nam sit amet risus vel lacus
-            tempor tincidunt eu a arcu.
-          \item Donec rhoncus vestibulum erat, quis aliquam leo
-            gravida egestas.
-        \end{itemize}
-      \item \textbf{Sed luctus, elit sit amet} dictum maximus, diam dolor
-        faucibus purus, sed lobortis justo erat id turpis.
-      \item \textbf{Pellentesque facilisis dolor in leo} bibendum congue.
-        Maecenas congue finibus justo, vitae eleifend urna facilisis at.
-    \end{itemize}
-
+    A more quantitative analysis, especially over the longer term, needs to be performed in order to precisely determine the correlation between the observations from the two probes. Still, we have shown that the high-resolution observations taken from CDP2 can precisely determine the evolution of cloud particles in the low-altitude arctic atmosphere.
   \end{block}
 
   \begin{block}{References}
     \nocite{*}
-    \footnotesize{
-      \bibliographystyle{plain}
-      \bibliography{poster}}
+    \footnotesize{\bibliographystyle{abbrv}\bibliography{poster}}
   \end{block}
 
 \end{column}
